@@ -1,0 +1,36 @@
+<h1><%= @team.name() %></h1>
+
+<h1>Update <%=@team.name() %> </h1>
+<form action="/teams/<%= @team.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="name">Rename this team:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Update</button>
+</form>
+
+<h1>Delete This Team</h1>
+<form action="/teams/<%= @team.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete team</button>
+</form>
+
+<h3>Add a new player to team:</h3>
+<form action="/teams/<%= @team.id() %>/add" method="post">
+  <input id="team_id" name="team_id" type="hidden" value="<%= @team.id() %>">
+  <label for="name">Player Name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Add Player</button>
+</form>
+
+<h1>All of <%= @team.name() %>'s players!</h1>
+<% if @team.players().any?() %>
+  <ul>
+    <% @team.players().each() do |player| %>
+      <li><a href="/players/<%= player.id() %>"><%= player.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no players for this team!!!!</p>
+<% end %>
+
+<a href="/">home</a>

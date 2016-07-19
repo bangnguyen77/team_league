@@ -1,0 +1,27 @@
+<h1>Player: <%= @player.name() %></h1>
+
+<h1>Update <%=@player.name() %> </h1>
+<form action="/players/<%= @player.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="name">Rename this player:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Update</button>
+</form>
+
+<h1>Delete This Player</h1>
+<form action="/players/<%= @player.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete player</button>
+</form>
+
+
+<!-- Can't do the same for the team, becuase it's manay-to-many relationship, and haven't learnt activerecord for this practice
+
+<h3>Teams that the player has played for:</h3>
+<form action="/players/<%= @player.id() %>/add" method="post">
+  <input id="player_id" name="player_id" type="hidden" value="<%= @player.id() %>">
+  <label for="name">Team Name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Add Team</button>
+</form>
+-->

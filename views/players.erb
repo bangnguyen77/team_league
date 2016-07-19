@@ -1,0 +1,20 @@
+<% if @players.any?() %>
+  <h3>Here are all the players</h3>
+  <ul>
+    <% @players.each() do |player| %>
+      <li><a href="/players/<%= player.id() %>"><%= player.name() %></a></li>
+
+    <% end %>
+  </ul>
+<% else %>
+  <p>
+    There are no players yet!
+  </p>
+<% end %>
+
+<h3>Create a new player:</h3>
+<form action="/players" method="post">
+  <label for="name">Player Name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Add Player</button>
+</form>
